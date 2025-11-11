@@ -63,7 +63,7 @@ export default function ContentStateEncoder() {
                 type="text"
                 value={canvasUrl}
                 onChange={(e) => setCanvasUrl(e.target.value)}
-                placeholder="https://example.com/canvas/1"
+                placeholder="https://api.library.tamu.edu/iiif-service/fedora/canvas/3b/6f/c3/25/3b6fc325-f6ca-41d8-b91e-8c5db3be8c13/graydiary-saf_objects/2/pages/page_4"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
               />
             </div>
@@ -76,7 +76,7 @@ export default function ContentStateEncoder() {
                 type="text"
                 value={manifestUrl}
                 onChange={(e) => setManifestUrl(e.target.value)}
-                placeholder="https://example.com/manifest"
+                placeholder="https://tamulib-dc-labs.github.io/custom-iiif-manifests/manifests/gray-diary/gray-v3.json"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
               />
             </div>

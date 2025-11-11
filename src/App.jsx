@@ -85,7 +85,7 @@ export default function ContentStateEncoder() {
           <button
             onClick={handleEncode}
             disabled={!canvasUrl || !manifestUrl}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+            className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 disabled:bg-black disabled:cursor-not-allowed transition-colors"
           >
             Encode
           </button>
@@ -122,7 +122,7 @@ export default function ContentStateEncoder() {
                   href={`https://theseusviewer.org/?iiif-content=${encoded}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors"
+                  className="flex-1 flex items-center justify-center gap-2 bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors hover:text-white"
                 >
                   <ExternalLink size={18} />
                   Open in Theseus
@@ -131,7 +131,7 @@ export default function ContentStateEncoder() {
                   href={`https://samvera-labs.github.io/clover-iiif/?iiif-content=${encoded}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+                  className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition-colors hover:text-white"
                 >
                   <ExternalLink size={18} />
                   Open in Clover

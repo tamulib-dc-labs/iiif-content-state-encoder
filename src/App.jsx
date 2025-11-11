@@ -59,11 +59,11 @@ export default function ContentStateEncoder() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Canvas URL
               </label>
-              <input
-                type="text"
+              <textarea
                 value={canvasUrl}
                 onChange={(e) => setCanvasUrl(e.target.value)}
                 placeholder="https://api.library.tamu.edu/iiif-service/fedora/canvas/3b/6f/c3/25/3b6fc325-f6ca-41d8-b91e-8c5db3be8c13/graydiary-saf_objects/2/pages/page_4"
+                rows="3"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
               />
             </div>
@@ -98,7 +98,7 @@ export default function ContentStateEncoder() {
                 </label>
                 <button
                   onClick={handleCopy}
-                  className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700"
+                  className="flex items-center gap-2 text-sm text-pink-300 hover:text-green-500"
                 >
                   {copied ? (
                     <>

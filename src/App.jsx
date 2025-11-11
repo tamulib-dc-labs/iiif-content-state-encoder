@@ -113,7 +113,7 @@ export default function ContentStateEncoder() {
                   )}
                 </button>
               </div>
-              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 break-all font-mono text-sm">
+              <div className="bg-black p-4 rounded-lg border border-gray-200 break-all font-mono text-sm">
                 {encoded}
               </div>
 

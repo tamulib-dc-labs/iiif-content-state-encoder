@@ -4,20 +4,46 @@ import { Copy, Check, ExternalLink } from 'lucide-react';
 export default function ContentStateEncoder() {
   const [canvasUrl, setCanvasUrl] = useState('');
   const [manifestUrl, setManifestUrl] = useState('');
+  const [annotation, setAnnotation] = useState('');
   const [encoded, setEncoded] = useState('');
   const [copied, setCopied] = useState(false);
 
-  const encodeContentState = (canvasUrl, manifestUrl) => {
-    const contentState = {
-      id: canvasUrl,
-      type: "Canvas",
-      partOf: [
-        {
-          id: manifestUrl,
-          type: "Manifest"
+  const encodeContentState = (canvasUrl, manifestUrl, annotation) => {
+    let contentState;
+
+    if (annotation && annotation.trim()) {
+      // If this is an annotation that targets a part of the Canvas, encode as such
+      const targetId = annotation.startsWith('#')
+        ? `${canvasUrl}${annotation}`
+        : `${canvasUrl}#${annotation}`;
+
+      contentState = {
+        "@context": "http://iiif.io/api/presentation/3/context.json",
+        "id": "https://example.org/import/1",
+        "type": "Annotation",
+        "motivation": ["contentState"],
+        "target": {
+          "id": targetId,
+          "type": "Canvas",
+          "partOf": [{
+            "id": manifestUrl,
+            "type": "Manifest"
+          }]
         }
-      ]
-    };
+      };
+    } else {
+      // Original simple format
+      contentState = {
+        id: canvasUrl,
+        type: "Canvas",
+        partOf: [
+          {
+            id: manifestUrl,
+            type: "Manifest"
+          }
+        ]
+      };
+    }
 
     const compactJson = JSON.stringify(contentState);
     const uriEncoded = encodeURIComponent(compactJson);
@@ -32,7 +58,7 @@ export default function ContentStateEncoder() {
 
   const handleEncode = () => {
     if (canvasUrl && manifestUrl) {
-      const result = encodeContentState(canvasUrl, manifestUrl);
+      const result = encodeContentState(canvasUrl, manifestUrl, annotation);
       setEncoded(result);
     }
   };
@@ -51,7 +77,10 @@ export default function ContentStateEncoder() {
             IIIF Content State Encoder
           </h1>
           <p className="text-gray-600 mb-6">
-            Convert Canvas and Manifest URLs to base64 encoded <a href={"https://iiif.io/api/content-state/1.0/"}>IIIF Content State</a>
+            Convert Canvas and Manifest URLs to base64 encoded <a href="https://iiif.io/api/content-state/1.0/" className="text-blue-600 hover:underline">IIIF Content State</a>.
+          </p>
+          <p className="text-gray-600 mb-6">
+            <strong>Target</strong> is optional.  If included, the content state request will be an Annotation that targets part of the canvas.
           </p>
 
           <div className="space-y-4 mb-6">
@@ -64,7 +93,7 @@ export default function ContentStateEncoder() {
                 onChange={(e) => setCanvasUrl(e.target.value)}
                 placeholder="https://api.library.tamu.edu/iiif-service/fedora/canvas/3b/6f/c3/25/3b6fc325-f6ca-41d8-b91e-8c5db3be8c13/graydiary-saf_objects/2/pages/page_4"
                 rows="3"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-y"
               />
             </div>
 
@@ -77,6 +106,20 @@ export default function ContentStateEncoder() {
                 value={manifestUrl}
                 onChange={(e) => setManifestUrl(e.target.value)}
                 placeholder="https://tamulib-dc-labs.github.io/custom-iiif-manifests/manifests/gray-diary/gray-v3.json"
+                rows="3"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-y"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Target <span className="text-gray-500 font-normal">(optional - e.g., xywh=100,200,100,200)</span>
+              </label>
+              <input
+                type="text"
+                value={annotation}
+                onChange={(e) => setAnnotation(e.target.value)}
+                placeholder="xywh=100,200,100,200"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
               />
             </div>
@@ -98,7 +141,7 @@ export default function ContentStateEncoder() {
                 </label>
                 <button
                   onClick={handleCopy}
-                  className="flex items-center gap-2 text-sm text-pink-300 hover:text-green-500"
+                  className="flex items-center gap-2 text-sm text-pink-300 hover:text-green-300"
                 >
                   {copied ? (
                     <>

@@ -165,7 +165,7 @@ export default function ContentStateEncoder() {
                   href={`https://theseusviewer.org/?iiif-content=${encoded}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors hover:text-white"
+                  className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-800 transition-colors hover:text-white"
                 >
                   <ExternalLink size={18} />
                   Open in Theseus
@@ -174,7 +174,7 @@ export default function ContentStateEncoder() {
                   href={`https://samvera-labs.github.io/clover-iiif/?iiif-content=${encoded}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition-colors hover:text-white"
+                  className="flex-1 flex items-center justify-center gap-2 bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-800 transition-colors hover:text-white"
                 >
                   <ExternalLink size={18} />
                   Open in Clover

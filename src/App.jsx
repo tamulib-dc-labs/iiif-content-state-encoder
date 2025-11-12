@@ -80,7 +80,7 @@ export default function ContentStateEncoder() {
             Convert Canvas and Manifest URLs to base64 encoded <a href="https://iiif.io/api/content-state/1.0/" className="text-blue-600 hover:underline">IIIF Content State</a>.
           </p>
           <p className="text-gray-600 mb-6">
-            <strong>Target</strong> is optional.  If included, the content state request will be an Annotation that targets part of the canvas.
+            <strong>Target</strong> is optional.  If included, the content state request will target a specific part of the canvas.
           </p>
 
           <div className="space-y-4 mb-6">
